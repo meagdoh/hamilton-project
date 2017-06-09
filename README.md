@@ -20,7 +20,7 @@ The primary goals of this project are to:
 NOTE: This is an educational experiment designed to provide some beneficial insight.
 
 ---
-###### MVP deployed June 9, 2017 
+###### MVP deployed June 9, 2017
 *D3 Visualization of Top 25 Vendors from 2017 Q1 Statement of Disbursements*
 
 #### Technologies Used
