@@ -31,7 +31,7 @@ MVP deployed June 9, 2017 - D3 Visualization of Top 25 Vendors from 2017 Q1 Stat
   * D3.js
 
 #### Other Tools Used
-  * Jupyter Notebook for data analysis (To see notebook, go here
+  * Jupyter Notebook for data analysis (To see notebook, go [here]( http://nbviewer.jupyter.org/github/meagdoh/hamilton-project/blob/master/data/Statement_of_Disbursements_2017_Q1.html)).
 
 #### Inspiration/Resources
 ###### Data Source: http://disbursements.house.gov/archive.shtml
