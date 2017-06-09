@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <svg width="960" height="880"></svg>
+        <svg width="960" height="940"></svg>
       </div>
     );
   }
@@ -29,7 +29,7 @@ function drawBubbleChart() {
       .size([width, width])
       .padding(1.5);
 
-  d3.csv("flare.csv", function(d) {
+  d3.csv("data.csv", function(d) {
     d.value = +d.value;
     if (d.value) return d;
   }, function(error, classes) {
@@ -61,15 +61,6 @@ function drawBubbleChart() {
         .attr("id", function(d) { return "clip-" + d.id; })
       .append("use")
         .attr("xlink:href", function(d) { return "#" + d.id; });
-
-    node.append("text")
-        .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
-      .selectAll("tspan")
-      .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
-      .enter().append("tspan")
-        .attr("x", 0)
-        .attr("y", function(d, i, nodes) { return 13 + (i - nodes.length / 2 - 0.5) * 10; })
-        .text(function(d) { return d; });
 
     node.append("title")
         .text(function(d) { return d.id + "\n" + format(d.value); });

@@ -1,0 +1,14 @@
+h1, h2, h3{
+      margin-left: 2%;
+}
+
+
+h1{
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+}
+
+h2,h3{
+  font-family: 'Raleway', sans-serif;
+  max-width: 550px;
+}

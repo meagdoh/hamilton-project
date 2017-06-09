@@ -1,8 +1,8 @@
 {
-  "name": "d3-react-example",
+  "name": "hamilton-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ganezasan.github.io/d3-react-example",
+  "homepage": "https://github.com/meagdoh/hamilton-project",
   "devDependencies": {
     "gh-pages": "^0.12.0",
     "react-scripts": "0.7.0"
