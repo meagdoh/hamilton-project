@@ -12,3 +12,11 @@ h2,h3{
   font-family: 'Raleway', sans-serif;
   max-width: 550px;
 }
+
+
+h4{
+  margin-left: 38%;
+  text-transform: uppercase;
+  font-size: 42px;
+  font-family: 'Raleway', sans-serif;
+}
