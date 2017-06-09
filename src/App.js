@@ -20,19 +20,24 @@ class App extends Component {
 function drawBubbleChart() {
   var svg = d3.select("svg"),
     width = +svg.attr("width");
-
+    //d3.format explained (",d") adds comma per thousand a.k.a.
+    // decimal notation https://github.com/d3/d3-format
   var format = d3.format(",d");
-
+  //https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal (See: Category Scales for understanding color)
   var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
   var pack = d3.pack()
+  //pack.size[width,height]
       .size([width, width])
+      //pack.padding = space between circles
       .padding(1.5);
 
   d3.csv("data.csv", function(d) {
+    //'d' is passed as an anonmyous function to represent data
     d.value = +d.value;
     if (d.value) return d;
   }, function(error, classes) {
+    //https://github.com/d3/d3-hierarchy/blob/master/README.md#hierarchy
     if (error) throw error;
 
     var root = d3.hierarchy({children: classes})
@@ -61,9 +66,9 @@ function drawBubbleChart() {
         .attr("id", function(d) { return "clip-" + d.id; })
       .append("use")
         .attr("xlink:href", function(d) { return "#" + d.id; });
-
+    //node.append("title") => title refers to an SVG attribute that acts as a tooltip (mouse over/hover)
     node.append("title")
-        .text(function(d) { return d.id + "\n" + format(d.value); });
+        .text(function(d) { return d.id + "\n" + "$"+format(d.value); });
   });
 }
 
