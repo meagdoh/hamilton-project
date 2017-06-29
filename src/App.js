@@ -26,6 +26,18 @@ function drawBubbleChart() {
   //https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal (See: Category Scales for understanding color)
   var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
+  var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("color", "white")
+    .style("padding", "8px")
+    .style("background-color", "rgba(0, 0, 0, 0.75)")
+    .style("border-radius", "6px")
+    .style("font", "12px sans-serif")
+    .text("tooltip");
+
   var pack = d3.pack()
   //pack.size[width,height]
       .size([width, width])
@@ -52,24 +64,32 @@ function drawBubbleChart() {
         });
 
     var node = svg.selectAll(".node")
-      .data(pack(root).leaves())
-      .enter().append("g")
+        .data(pack(root).leaves())
+        .enter().append("g")
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     node.append("circle")
         .attr("id", function(d) { return d.id; })
         .attr("r", function(d) { return d.r; })
-        .style("fill", function(d) { return color(d.package); });
+        .style("fill", function(d) { return color(d.package); })
+        .on("mouseover", function(d) {
+              tooltip.text(d.id + ": " + "$" + format(d.value));
+              tooltip.style("visibility", "visible");
+            })
+        .on("mousemove", function() {
+          return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");
+            })
+        .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
     node.append("clipPath")
         .attr("id", function(d) { return "clip-" + d.id; })
       .append("use")
         .attr("xlink:href", function(d) { return "#" + d.id; });
-    //node.append("title") => title refers to an SVG attribute that acts as a tooltip (mouse over/hover)
-    node.append("title")
-        .text(function(d) { return d.id + "\n" + "$"+format(d.value); });
+    
   });
+
+
 }
 
 export default App;
