@@ -24,7 +24,7 @@ function drawBubbleChart() {
     // decimal notation https://github.com/d3/d3-format
   var format = d3.format(",d");
   //https://github.com/d3/d3-scale/blob/master/README.md#scaleOrdinal (See: Category Scales for understanding color)
-  var color = d3.scaleOrdinal(d3.schemeCategory20c);
+  var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
   var tooltip = d3.select("body")
     .append("div")
@@ -86,7 +86,7 @@ function drawBubbleChart() {
         .attr("id", function(d) { return "clip-" + d.id; })
       .append("use")
         .attr("xlink:href", function(d) { return "#" + d.id; });
-    
+
   });
 
 
