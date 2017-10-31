@@ -16,12 +16,15 @@ I settled a bit on both. The first (querying a database) is currently a manual u
 Download .csv from House of Disbursements site, save as `CongressSession_Year_QuarterNum` e.g. `114_2016_Q1.csv`
 
 ### Rules for cleaning data
-1) [SORT_SUBTOTAL_DESCRIPTION] does *not* equal [BENEFITS TO FORMER PERSONNEL; PERSONNEL BENEFITS; PERSONNEL COMPENSATION] this removes the personnel expenses from the data set. For purposes of analyzing vendor expenditures, personnel needs not to be included
+1) Confirm Headers Names: [ ORGANIZATION, PROGRAM, SORT_SUBTOTAL_DESCRIPTION, SORT_SEQUENCE, TRANSACTION_DATE, DATA SOURCE, DOCUMENT, VENDOR_NAME, PERFORM_START_DT, PERFORM_END_DT, DESCRIPTION, AMOUNT
+]
 
 2) [SORT_SEQUENCE] = [DETAIL] this removes the subtotals and total rows from the data set.
 
 ### Tips for Analyzing Data
-When looking at amount totals by vendor, limit to TOP 100. There are 33,485 unique `VENDOR_NAME` NOTE: As previously documented, vendors are often listed under more than one name. This is a future opportunity to manually/use fuzzy matching to match and consolidate vendor names
+When looking at amount totals by vendor, limit to TOP 100. There are 33,485 unique `VENDOR_NAME` NOTE: As previously documented, vendors are often listed under more than one name. This is a future opportunity to manually/use fuzzy matching to match and consolidate vendor names.
+
+If you are analyzing personnel data, mark: [SORT_SUBTOTAL_DESCRIPTION] does *not* equal [BENEFITS TO FORMER PERSONNEL; PERSONNEL BENEFITS; PERSONNEL COMPENSATION] this removes the personnel expenses from the data set. For purposes of analyzing vendor expenditures, personnel needs not to be included
 
 
 #### Key
@@ -48,20 +51,19 @@ For non-personnel data:
 - How has spending categories changed over time?
 
 ### Data Findings
-- No. of Transactions Analyzed: 635, 721
+- No. of Transactions Analyzed: 635,721
 
-- As noted in past work, Vendor Unknown is the biggest category of spending. The DATA_SOURCE for all Vendor = `unknown` originate from the GL (General Ledger)
--- NOTE: The highest transaction ($11,014,427) category within Vendor Unknown is `DC TELECOM TOLLS`
+- As noted in past work, `VENDOR_NAME` `Unknown` is the biggest category of spending. The `DATA_SOURCE` for all `Vendor` equals `unknown` originate from the `GL` (General Ledger). And the highest transaction category is `DC TELECOM TOLLS`_($11,014,427)_
 
-- VENDOR NAME: `CITIBANK GOV CARD SERVICE` ($18,606,367) is the top record after `NULL`. Assumption: Tech purchases are made on P-cards but the research shows these cards are used mostly for `COMMERCIAL TRANSPORTATION`.
+- `VENDOR NAME` equals `CITIBANK GOV CARD SERVICE` _($18,606,367)_ is the top vendor after `NULL`. Assumption: Tech purchases are made on P-cards but the research shows these cards are used mostly for `COMMERCIAL TRANSPORTATION`.
 
-- When analyzing total expenditures by `DESCRIPTION` we find the top category ($37,712,578) fall into `TECHNOLOGY SERVICE CONTRACTS`. In this category, there are the well-known technology vendors like IConstituent and Fireside, but there are a few top vendors who may not of have heard of:
--- MINERAL GAP DATA CENTER, $1.9M
--- COMPROBASE INC., $1.5M
--- ADVANCE DIGITAL SYSTEMS INC., $1.5M
+- When analyzing total expenditures by `DESCRIPTION` we find the top category fall into `TECHNOLOGY SERVICE CONTRACTS` _($37,712,578)_. In this category, there are the well-known technology vendors like *iConstituent* and *Fireside21*, but there are a few top vendors who you may not know:
+-- MINERAL GAP DATA CENTER, _$1.9M_
+-- COMPROBASE INC., _$1.5M_
+-- ADVANCE DIGITAL SYSTEMS INC., _$1.5M_
 For a full list, run this query [add query]
 
-- Tech Staff // Research often cites limited technology capacity. A search for `DESCRIPTION` (a.k.a. staff title) contains `TECH` OR `SYS ADMIN` results in approximately 200 staffers with these titles ranging from `Tech Policy Advisor` to `System Administrator`
+- Research often cites limited technology staff. A search for `DESCRIPTION` (in this case, defined as staff title) contains `TECH` OR `SYS ADMIN` results in approximately _200 staffers_ with these titles ranging from `Tech Policy Advisor` to `System Administrator`, _about X% of all staff total_ (taken from other data source)
 
 
 ### Next steps
