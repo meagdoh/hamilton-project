@@ -61,7 +61,7 @@ For non-personnel data:
 -- MINERAL GAP DATA CENTER, _$1.9M_
 -- COMPROBASE INC., _$1.5M_
 -- ADVANCE DIGITAL SYSTEMS INC., _$1.5M_
-For a full list, run this query [add query]
+For a full list, run query: [add query]
 
 - Research often cites limited technology staff. A search for `DESCRIPTION` (in this case, defined as staff title) contains `TECH` OR `SYS ADMIN` results in approximately _200 staffers_ with these titles ranging from `Tech Policy Advisor` to `System Administrator`, _about X% of all staff total_ (taken from other data source)
 
