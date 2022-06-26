@@ -1,7 +1,7 @@
 # Hamilton Project
 #### A data analysis and visualization project providing insight into legislative branch spending.
 
-The primary goals of this project are to:
+The goals of this project are to:
 1. Clean up publicly available disbursement data to make it easier for reporters, elected officials, constituents, anyone to understand how money is being spent.
   * Match and consolidate like vendors
   * Catch and fix misspellings
